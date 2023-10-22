@@ -40,6 +40,14 @@ until [ "${Exit}" = "Y" ]; do
         awk -v ID=${id} '$2==1 {sum+=$3; n+=1} END {printf("average rating of %d: %.5f\n", ID, sum / n)}' $2
         echo ""
         ;;
+    4)
+        read -p "Do you want to delete the 'IMDbURL' from 'u.item'? (y/n) " choice
+        echo ""
+        if [ "${choice}" = "y" ]; then
+            cat $1 | sed -E 's/http:[^\|]*//g' | head -n 10
+        fi
+        echo ""
+     ;;
     9)
         echo "Bye!"
         Exit="Y"

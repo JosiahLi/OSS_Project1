@@ -47,7 +47,24 @@ until [ "${Exit}" = "Y" ]; do
             cat $1 | sed -E 's/http:[^\|]*//g' | head -n 10
         fi
         echo ""
-     ;;
+        ;;
+    5)
+        read -p "Do you want to get the data about users from 'u.user'? (y/n): " choice
+        echo ""
+        if [ "${choice}" = "y" ]; then
+            cat $3 | sed -E 's/\|/ /g' | sed -E 's/(\w+) (\w+) (\w+) (\w+).+/user \1 is \2 years old \3 \4/' | head -n 10 | sed -E 's/F/female/g' | sed -E 's/M/male/g'
+        fi
+        echo ""
+        ;;
+    6)
+        read -p "Do you want to Modify the format of 'release data' in 'u.item' (y/n): " choice
+        echo ""
+        if [ "${choice}" = "y" ]; then
+            cat $1 | sed -E 's/([0-9]{2})-(\w{3})-([0-9]{4})/\3\2\1/' | tail -n 10| sed -E 's/Jan/01/' | sed -E 's/Feb/02/' | sed -E 's/Mar/03/' | sed -E 's/Apr/04/' |\
+            sed -E 's/May/05/' | sed -E 's/Jun/06/' | sed -E 's/Jul/07/' | sed -E 's/Aug/08/' | sed -E 's/Sep/09/' | sed -E 's/Oct/10/' |\
+            sed -E 's/Nov/11/' | sed -E 's/Dec/12/'
+        fi
+        ;;
     9)
         echo "Bye!"
         Exit="Y"

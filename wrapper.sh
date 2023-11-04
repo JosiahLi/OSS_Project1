@@ -1,3 +1,3 @@
 #! /bin/bash
 
-./test.sh u.item u.data u.user
+./prj1_12214588_LILIANGJI.sh u.item u.data u.user
